@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import environment from '../enviroments/enviroments';
-import { Cities, Trails  } from './app.models'
+import { Cities, Weather  } from './app.models'
 
 @Injectable({
   providedIn: 'root'
@@ -24,9 +24,19 @@ export class AppService {
     )
   }
 
-  getWeather = (name: string): Observable<Trails[]> => {
-    return this.httpClient.get<Trails>(`${environment.apiUrl}basaltapi/trails`,
-    { params: { name } , observe: 'response' }).pipe(
+  getWeather = (city: string): Observable<Weather[]> => {
+    return this.httpClient.get<Weather>(`${environment.apiUrl}basaltapi/weather`,
+    { params: { city } , observe: 'response' }).pipe(
+      map((res: any) => {
+        return res.body;
+      }),
+      catchError((err: HttpErrorResponse) => { throw new Error(err.message); }),
+    )
+  }
+
+  postWeather = (weather: Weather): Observable<any> => {
+    return this.httpClient.post<Weather>(`${environment.apiUrl}basaltapi/weatherbycity`, weather,
+    { observe: 'response' }).pipe(
       map((res: any) => {
         return res.body;
       }),

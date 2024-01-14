@@ -5,7 +5,7 @@
 -- Dumped from database version 16.1 (Debian 16.1-1.pgdg120+1)
 -- Dumped by pg_dump version 16.1
 
--- Started on 2024-01-14 13:32:07 UTC
+-- Started on 2024-01-14 19:34:02 UTC
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -42,31 +42,32 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 215 (class 1259 OID 16389)
--- Name: trails; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 215 (class 1259 OID 24579)
+-- Name: weather_city; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.trails (
+CREATE TABLE public.weather_city (
     id uuid NOT NULL,
-    city character(50) NOT NULL,
-    trail character(50) NOT NULL,
-    ride boolean NOT NULL,
-    date_riden date
+    city character(50),
+    main character(50),
+    description character(50),
+    date date,
+    active boolean
 );
 
 
-ALTER TABLE public.trails OWNER TO postgres;
+ALTER TABLE public.weather_city OWNER TO postgres;
 
 --
--- TOC entry 3203 (class 2606 OID 16393)
--- Name: trails trails_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 3203 (class 2606 OID 24583)
+-- Name: weather_city weather_city_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.trails
-    ADD CONSTRAINT trails_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.weather_city
+    ADD CONSTRAINT weather_city_pkey PRIMARY KEY (id);
 
 
--- Completed on 2024-01-14 13:32:07 UTC
+-- Completed on 2024-01-14 19:34:02 UTC
 
 --
 -- PostgreSQL database dump complete

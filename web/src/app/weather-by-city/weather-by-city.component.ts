@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Cities, Trails  } from '../app.models'
+import { Cities, Weather  } from '../app.models'
 import { AppService } from '../app.service';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { MatSelectChange } from '@angular/material/select';
+import { FormBuilder, FormGroup } from '@angular/forms';
 // import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -15,14 +16,15 @@ export class WeatherByCityComponent implements OnInit, OnDestroy {
   private subcription: Subscription | undefined;
 
   citiesList: Cities[] | undefined;
-  
-  weather: Trails[] | undefined;
+
+  weatherForm: FormGroup | undefined
 
   loader: boolean = false;
 
   constructor(
     private appService: AppService,
     private toastr: ToastrService,
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
@@ -47,13 +49,13 @@ export class WeatherByCityComponent implements OnInit, OnDestroy {
     });
   };
 
-  getTrailsForCity = (event: MatSelectChange): void => {
-    const { name } = event.value as Cities;
+  getWeatherForCity = (event: MatSelectChange): void => {
+    const { city } = event.value as Cities;
     this.loader = true;
-    this.subcription = this.appService.getWeather(name!).subscribe({
+    this.subcription = this.appService.getWeather(city!).subscribe({
       next: (res) => {
         console.log(res);
-        this.weather = res;
+        this.createWeatherForm(res[0]);
       },
       error: (err: ErrorEvent) => {
         this.toastr.error(err.message, 'ERROR', {
@@ -65,6 +67,27 @@ export class WeatherByCityComponent implements OnInit, OnDestroy {
         this.loader = false;
       }
     })
+  }
+
+  createWeatherForm = (weather: Weather): void => {
+    this.weatherForm = this.formBuilder.group({
+      id: [weather.id],
+      main: [weather.main],
+      description: [weather.description],
+      icon: [weather.icon]
+    });
+  }
+
+  clearForm = (): void => {
+    this.weatherForm?.reset();
+  }
+
+  onSubmit = (): void => {
+    if (this.weatherForm?.invalid) {
+      this.toastr.warning('Check Form', 'WARNING', {
+        timeOut: 3000,
+      });
+    }
   }
 
   ngOnDestroy(): void {

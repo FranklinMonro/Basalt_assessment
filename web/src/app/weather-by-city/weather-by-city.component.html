@@ -1,9 +1,25 @@
 <mat-spinner class="spinner" *ngIf="loader"></mat-spinner>
-<div>
+<div *ngIf="!loader">
   <mat-form-field>
       <mat-label>Cities</mat-label>
-      <mat-select (selectionChange)="getTrailsForCity($event)">
-        <mat-option *ngFor="let city of citiesList" [value]="city" >{{ city.name }}</mat-option>
+      <mat-select (selectionChange)="getWeatherForCity($event)">
+        <mat-option *ngFor="let city of citiesList" [value]="city" >{{ city.city }}</mat-option>
       </mat-select>
     </mat-form-field>
+</div>
+
+<div *ngIf="weatherForm">
+  <form (ngSubmit)="onSubmit()" [formGroup]="weatherForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>Favorite food</mat-label>
+      <input matInput placeholder="Ex. Pizza" formControlName="main">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Favorite food</mat-label>
+      <input matInput placeholder="Ex. Pizza" formControlName="description">
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Submit</button>
+    &nbsp;
+    <button type="button" mat-raised-button color="warn" (click)="clearForm()">Submit</button>
+  </form>
 </div>

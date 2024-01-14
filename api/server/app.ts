@@ -7,7 +7,7 @@ import swaggerConfig from '../swagger/swaggerConfig';
 
 import CitiesRouter from '../routes/cities/cities.routes';
 import WeatherRouter from '../routes/weather/weather.routes';
-import TrailByCityRouter  from '../routes/trailByCity/trailByCity.routes';
+import WeatherByCityRouter  from '../routes/weatherByCity/weatherByCity.routes';
 
 class App {
   public httpServer = express();
@@ -42,7 +42,7 @@ class App {
 
     this.httpServer.use('/basaltapi/weather', WeatherRouter);
 
-    this.httpServer.use('/basaltapi/trailsbycity', TrailByCityRouter);
+    this.httpServer.use('/basaltapi/weatherbycity', WeatherByCityRouter);
 
     this.httpServer.use((err: Error, req: Request, res: Response, next: NextFunction) => {
       console.log(`error in url ${req.originalUrl} - error: ${err}`);

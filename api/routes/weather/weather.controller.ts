@@ -17,7 +17,7 @@ const getWeather = async (req: Request, res: Response, next: NextFunction): Prom
     };
 
     const response = await axios.request(options);
-    res.status(200).send(response.data);
+    res.status(200).send(response.data.weather);
   } catch (error) {
     log.error(`Error retrieving response, error: ${error}`)
     next(error);

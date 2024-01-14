@@ -1,21 +1,21 @@
 import type { Sequelize } from "sequelize";
-import { trails as _trails } from "./trails";
-import type { trailsAttributes, trailsCreationAttributes } from "./trails";
+import { weather_city as _weather_city } from "./weather_city";
+import type { weather_cityAttributes, weather_cityCreationAttributes } from "./weather_city";
 
 export {
-  _trails as trails,
+  _weather_city as weather_city,
 };
 
 export type {
-  trailsAttributes,
-  trailsCreationAttributes,
+  weather_cityAttributes,
+  weather_cityCreationAttributes,
 };
 
 export function initModels(sequelize: Sequelize) {
-  const trails = _trails.initModel(sequelize);
+  const weather_city = _weather_city.initModel(sequelize);
 
 
   return {
-    trails: trails,
+    weather_city: weather_city,
   };
 }

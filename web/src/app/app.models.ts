@@ -1,22 +1,18 @@
 interface Cities {
-    id?: number;
-    wikiDataId?: string;
-    name?: string;
+    city?: string;
+    state?: string;
     country?: string;
-    countryCode?: string;
-    region?: string;
-    regionregionCode?: string;
-    latitude?: number;
-    longitude?: number;
-    population?: number;
 }
 
 
-interface Trails {
-    id?: string;
+interface Weather {
+  id?: number;
+  main?: string;
+  description?: string;
+  icon?: string;
 }
 
 export {
     Cities,
-    Trails
+    Weather
 };
