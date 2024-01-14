@@ -10,14 +10,17 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { TrailsByCityComponent } from './trails-by-city/trails-by-city.component';
-import { TrailsListComponent } from './trails-list/trails-list.component';
+import { ToastrModule } from 'ngx-toastr';
+
+import { WeatherByCityComponent } from './weather-by-city/weather-by-city.component';
+import { WeatherListComponent } from './Weather-list/weather-list.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    TrailsByCityComponent,
-    TrailsListComponent
+    WeatherByCityComponent,
+    WeatherListComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +30,7 @@ import { TrailsListComponent } from './trails-list/trails-list.component';
     MatSelectModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

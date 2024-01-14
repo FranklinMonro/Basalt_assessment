@@ -3,10 +3,10 @@ import { Request, Response, NextFunction } from 'express';
 import { trailsLogger as log } from '../../server/winstonLog';
 import axios from 'axios';
 
-const getCities = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+const getTrails = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
 
-    const { latitude, longitude } = req.params;
+    const { latitude, longitude } = req.query;
     const options = {
         method: 'GET',
         url: 'https://trailapi-trailapi.p.rapidapi.com/trails/explore/',
@@ -28,4 +28,4 @@ const getCities = async (req: Request, res: Response, next: NextFunction): Promi
   }
 };
 
-export default getCities;
+export default getTrails;

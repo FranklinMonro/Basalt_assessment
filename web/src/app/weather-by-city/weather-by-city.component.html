@@ -1,0 +1,9 @@
+<mat-spinner class="spinner" *ngIf="loader"></mat-spinner>
+<div>
+  <mat-form-field>
+      <mat-label>Cities</mat-label>
+      <mat-select (selectionChange)="getTrailsForCity($event)">
+        <mat-option *ngFor="let city of citiesList" [value]="city" >{{ city.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+</div>
