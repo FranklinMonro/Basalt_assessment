@@ -22,6 +22,7 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
+      - ./run_create_db.sh:/docker-entrypoint-initdb.d/run_create_db.sh
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
