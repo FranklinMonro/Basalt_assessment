@@ -12,6 +12,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule} from '@angular/material/sort';
+import { MatPaginatorModule} from '@angular/material/paginator';
 
 import { ToastrModule } from 'ngx-toastr';
 
@@ -37,6 +40,9 @@ import { WeatherListComponent } from './Weather-list/weather-list.component';
     MatInputModule,
     MatProgressSpinnerModule,
     MatButtonModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
     ToastrModule.forRoot(),
   ],
   providers: [],

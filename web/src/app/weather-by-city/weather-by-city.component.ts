@@ -5,12 +5,14 @@ import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { MatSelectChange } from '@angular/material/select';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { WeatherListComponent } from '../Weather-list/weather-list.component';
 // import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-weather-by-city',
   templateUrl: './weather-by-city.component.html',
-  styleUrls: ['./weather-by-city.component.scss']
+  styleUrls: ['./weather-by-city.component.scss'],
+  providers: [WeatherListComponent]
 })
 export class WeatherByCityComponent implements OnInit, OnDestroy {
   private subcription: Subscription | undefined;
@@ -21,10 +23,13 @@ export class WeatherByCityComponent implements OnInit, OnDestroy {
 
   loader: boolean = false;
 
+  weatherData: boolean = false;
+
   constructor(
     private appService: AppService,
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
+    private weatherList: WeatherListComponent,
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +41,9 @@ export class WeatherByCityComponent implements OnInit, OnDestroy {
     this.subcription = this.appService.getCities().subscribe({
       next: (res) => {
         this.citiesList = res;
+        if (this.citiesList.length > 0) {
+          this.weatherData = true;
+        }
       },
       error: (err: ErrorEvent) => {
         this.toastr.error(err.message, 'ERROR', {
@@ -54,7 +62,6 @@ export class WeatherByCityComponent implements OnInit, OnDestroy {
     this.loader = true;
     this.subcription = this.appService.getWeather(city!).subscribe({
       next: (res) => {
-        console.log(res);
         this.createWeatherForm(city!, res[0]);
       },
       error: (err: ErrorEvent) => {
@@ -81,6 +88,7 @@ export class WeatherByCityComponent implements OnInit, OnDestroy {
 
   clearForm = (): void => {
     this.weatherForm?.reset();
+    this.weatherData = false;
   }
 
   onSubmit = (): void => {
@@ -94,12 +102,13 @@ export class WeatherByCityComponent implements OnInit, OnDestroy {
     this.subcription = this.appService.postWeather(this.weatherForm?.value).subscribe({
       next: (res) => {
         if (res) {
-          this.toastr.success('Weather for city added', 'ERROR', {
+          this.toastr.success('Weather for city added', 'SUCCESS', {
             timeOut: 3000,
           });
           this.weatherForm?.reset();
+          this.weatherData = false;
+          this.weatherList.getWeatherByCityList();
         }
-        
       },
       error: (err: ErrorEvent) => {
         this.toastr.error(err.message, 'ERROR', {

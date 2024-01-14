@@ -2,11 +2,10 @@ import { Request, Response, NextFunction } from 'express';
 
 import { trailsLogger as log } from '../../server/winstonLog';
 import axios from 'axios';
+import Weather from './weather.models';
 
-const getWeather = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+const callWeatherApi = async (city: string): Promise<Weather> => {
   try {
-
-    const { city } = req.query;
     const options = {
       method: 'GET',
       url: `https://open-weather13.p.rapidapi.com/city/${city}`,
@@ -17,11 +16,24 @@ const getWeather = async (req: Request, res: Response, next: NextFunction): Prom
     };
 
     const response = await axios.request(options);
-    res.status(200).send(response.data.weather);
+    return response.data.weather;
+  } catch (err) {
+    throw new Error('Error in retrieving weather');
+  }
+}
+
+const getWeather = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const { city } = req.query;
+    const response = await callWeatherApi(city as string);
+    res.status(200).send(response);
   } catch (error) {
     log.error(`Error retrieving response, error: ${error}`)
     next(error);
   }
 };
 
-export default getWeather;
+export {
+  getWeather,
+  callWeatherApi,
+};

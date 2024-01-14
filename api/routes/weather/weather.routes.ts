@@ -1,5 +1,5 @@
 import express from 'express';
-import getWeather from './weather.controller';
+import { getWeather } from './weather.controller';
 
 class WeatherRouter {
   public router = express.Router();

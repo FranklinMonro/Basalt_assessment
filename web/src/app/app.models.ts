@@ -13,7 +13,17 @@ interface Weather {
   icon?: string;
 }
 
+interface WeatherByCity {
+  id?: string;
+  city?: string;
+  main?: string;
+  description?: string;
+  date?: string;
+  active?: boolean;
+}
+
 export {
     Cities,
-    Weather
+    Weather,
+    WeatherByCity,
 };

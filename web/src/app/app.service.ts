@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import environment from '../enviroments/enviroments';
-import { Cities, Weather  } from './app.models'
+import { Cities, Weather, WeatherByCity  } from './app.models'
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +39,36 @@ export class AppService {
     { observe: 'response' }).pipe(
       map((res: any) => {
         return res.body;
+      }),
+      catchError((err: HttpErrorResponse) => { throw new Error(err.message); }),
+    )
+  }
+
+  getWeatherByCity = (): Observable<WeatherByCity[]> => {
+    return this.httpClient.get<WeatherByCity>(`${environment.apiUrl}basaltapi/weatherbycity`,
+    { observe: 'response' }).pipe(
+      map((res: any) => {
+        return res.body;
+      }),
+      catchError((err: HttpErrorResponse) => { throw new Error(err.message); }),
+    )
+  }
+
+  updateWeatherByCity = (id: string, city: string): Observable<WeatherByCity[]> => {
+    return this.httpClient.put<WeatherByCity>(`${environment.apiUrl}basaltapi/weatherbycity`, { id, city },
+    { observe: 'response' }).pipe(
+      map((res: any) => {
+        return res.status;
+      }),
+      catchError((err: HttpErrorResponse) => { throw new Error(err.message); }),
+    )
+  }
+
+  deleteWeatherByCity = (id: string): Observable<WeatherByCity[]> => {
+    return this.httpClient.delete<WeatherByCity>(`${environment.apiUrl}basaltapi/weatherbycity`,
+    { params: { id }, observe: 'response' }).pipe(
+      map((res: any) => {
+        return res.status;
       }),
       catchError((err: HttpErrorResponse) => { throw new Error(err.message); }),
     )

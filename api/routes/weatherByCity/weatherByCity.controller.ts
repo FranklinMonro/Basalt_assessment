@@ -6,12 +6,16 @@ import { SEQUILIZE_NEW } from '../../server/config';
 import { initModels } from '../../models/init-models';
 
 import { trailByCityLogger as log } from '../../server/winstonLog';
+import { callWeatherApi } from '../weather/weather.controller';
 
 const { weather_city } = initModels(SEQUILIZE_NEW);
 
 const getWeatherByCity = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const weatherByCityList = weather_city.findAll({
+    const weatherByCityList = await weather_city.findAll({
+      where: {
+        active: true,
+      },
       raw: true,
     }).catch((err) => {
       log.log('error', `Error in getting weather by city list, error: ${err}`);
@@ -27,7 +31,7 @@ const getWeatherByCity = async (req: Request, res: Response, next: NextFunction)
 const postWeatherByCity = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { city , main, description} = req.body;
-    const weatherByCityPost = weather_city.create({
+    const weatherByCityPost = await weather_city.create({
       id: randomUUID(),
       city,
       main,
@@ -47,7 +51,9 @@ const postWeatherByCity = async (req: Request, res: Response, next: NextFunction
 
 const putWeatherByCity = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { id , main, description} = req.body;
+    const { id , city } = req.body;
+    const response = await callWeatherApi(city!);
+    const { main, description } = response;
     const updateWeather = await weather_city.update(
       {
         main,
@@ -72,14 +78,15 @@ const putWeatherByCity = async (req: Request, res: Response, next: NextFunction)
 
 const deleteWeatherByCity = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { id , active } = req.body;
+    const { id  } = req.query;
+    const weatherID: string = id as string;
     const deleteWeather = await weather_city.update(
       {
-        active,
+        active: false,
       },
       {
         where: {
-          id,
+          id: weatherID,
         },
       },
     ).catch((err) => {
