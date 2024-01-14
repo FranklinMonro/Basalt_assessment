@@ -55,7 +55,7 @@ export class WeatherByCityComponent implements OnInit, OnDestroy {
     this.subcription = this.appService.getWeather(city!).subscribe({
       next: (res) => {
         console.log(res);
-        this.createWeatherForm(res[0]);
+        this.createWeatherForm(city!, res[0]);
       },
       error: (err: ErrorEvent) => {
         this.toastr.error(err.message, 'ERROR', {
@@ -69,9 +69,10 @@ export class WeatherByCityComponent implements OnInit, OnDestroy {
     })
   }
 
-  createWeatherForm = (weather: Weather): void => {
+  createWeatherForm = (city: string, weather: Weather): void => {
     this.weatherForm = this.formBuilder.group({
       id: [weather.id],
+      city: [city],
       main: [weather.main],
       description: [weather.description],
       icon: [weather.icon]
@@ -87,8 +88,32 @@ export class WeatherByCityComponent implements OnInit, OnDestroy {
       this.toastr.warning('Check Form', 'WARNING', {
         timeOut: 3000,
       });
+      return;
     }
+    this.loader = true;
+    this.subcription = this.appService.postWeather(this.weatherForm?.value).subscribe({
+      next: (res) => {
+        if (res) {
+          this.toastr.success('Weather for city added', 'ERROR', {
+            timeOut: 3000,
+          });
+          this.weatherForm?.reset();
+        }
+        
+      },
+      error: (err: ErrorEvent) => {
+        this.toastr.error(err.message, 'ERROR', {
+          timeOut: 3000,
+        });
+        this.loader = false;
+      },
+      complete: () => {
+        this.loader = false;
+      }
+    })
   }
+
+  
 
   ngOnDestroy(): void {
     if (this.subcription) {
