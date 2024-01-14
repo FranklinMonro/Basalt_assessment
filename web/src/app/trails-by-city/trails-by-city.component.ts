@@ -3,6 +3,8 @@ import { Cities  } from '../app.models'
 import { AppService } from '../app.service';
 import { Subscription } from 'rxjs';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-trails-by-city',
   templateUrl: './trails-by-city.component.html',
@@ -15,13 +17,28 @@ export class TrailsByCityComponent implements OnInit, OnDestroy {
 
   loader: boolean = false;
   
-  constructor(private appService: AppService) {}
+  constructor(
+    private appService: AppService,
+    private toastr: ToastrService,
+  ) {}
   
   ngOnInit(): void {
   }
 
   getCitiesList = (): void => {
-    
+    this.subcription = this.appService.getCities().subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err: ErrorEvent) => {
+        this.toastr.error(err.message, 'ERROR', {
+          timeOut: 3000,
+        });
+      },
+      complete: () => {
+
+      }
+    })
   }
 
   ngOnDestroy(): void {

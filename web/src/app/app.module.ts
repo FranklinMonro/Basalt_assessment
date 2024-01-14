@@ -26,7 +26,7 @@ import { TrailsListComponent } from './trails-list/trails-list.component';
     MatTabsModule,
     MatSelectModule,
     MatFormFieldModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
