@@ -1,11 +1,11 @@
 import express from 'express';
-import getTrails from './trail.controller';
+import getTrails from '../cities/cities.controller';
 
 class TrailsRouter {
   public router = express.Router();
 
   constructor() {
-    this.router.get('/wordtype', getTrails);
+    this.router.get('', getTrails);
   }
 }
 

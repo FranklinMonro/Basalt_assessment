@@ -5,7 +5,7 @@ import swaggerUi from 'swagger-ui-express';
 import { appLogger as log, errorHandlerLogger as errorLog } from './winstonLog';
 import swaggerConfig from '../swagger/swaggerConfig';
 
-import TrailsRouter from '../routes/trails/trail.routes';
+import CitiesRouter from '../routes/cities/cities.routes';
 
 class App {
   public httpServer = express();
@@ -36,7 +36,7 @@ class App {
 
     this.httpServer.use('/basaltapi-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 
-    this.httpServer.use('/basaltapi/sentenceroutes', TrailsRouter);
+    this.httpServer.use('/basaltapi/cities', CitiesRouter);
 
     this.httpServer.use((err: Error, req: Request, res: Response, next: NextFunction) => {
       console.log(`error in url ${req.originalUrl} - error: ${err}`);

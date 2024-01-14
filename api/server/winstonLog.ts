@@ -90,10 +90,49 @@ const trailsLogger = createLogger({
   },
 });
 
+const cittiesLogger = createLogger({
+  transports: [
+    new transports.File({
+      dirname: 'logs',
+      filename: 'cittiesLogger.log',
+    }),
+  ],
+  format: format.combine(
+    format.timestamp(),
+    format.printf(({
+      timestamp, level, message, service,
+    }) => `[${timestamp}] ${service} ${level}: ${message}`),
+  ),
+  defaultMeta: {
+    service: 'WinstonExample',
+  },
+});
+
+const trailByCityLogger = createLogger({
+  transports: [
+    new transports.File({
+      dirname: 'logs',
+      filename: 'trailByCityLogger.log',
+    }),
+  ],
+  format: format.combine(
+    format.timestamp(),
+    format.printf(({
+      timestamp, level, message, service,
+    }) => `[${timestamp}] ${service} ${level}: ${message}`),
+  ),
+  defaultMeta: {
+    service: 'WinstonExample',
+  },
+});
+
+
 export {
   appLogger,
   configLogger,
   errorHandlerLogger,
   serverLogger,
   trailsLogger,
+  cittiesLogger,
+  trailByCityLogger,
 };
