@@ -7,7 +7,7 @@ const PORT = 3000;
 const HOST = '0.0.0.0';
 
 const PG_CONNECTION = {
-  host: 'postgres', // host of db container'
+  host: 'db', // host of db container'
   port: 5432, // 5432 is the default;
   database: 'basalt', // database name
   user: 'postgres', // database user name
@@ -40,16 +40,9 @@ const connectToDB = async () => {
 
 connectToDB();
 
-const { WORD_API_KEY } = process.env;
 
-const WORDS_API_CONFIG = {
-  url: 'https://wordsapiv1.p.rapidapi.com/words/',
-  hostname: 'wordsapiv1.p.mashape.com',
-  apiKey: WORD_API_KEY,
-};
 export {
   PORT,
   HOST,
   SEQUILIZE_NEW,
-  WORDS_API_CONFIG,
 };
