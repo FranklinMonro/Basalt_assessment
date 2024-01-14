@@ -1,0 +1,59 @@
+{
+    "tags": {
+      "name": "Cities",
+      "description": "Get all trails by city"
+    },
+    "paths": {
+      "/weather/{city}": {
+        "get": {
+          "parameters": [
+              {
+                  "name": "city",
+                  "in": "path",
+                  "required": true,
+                  "description": "city",
+                  "type": "string"
+              }
+            ],
+          "tags": ["Weather"],
+          "summary": "Get the weather for the city",
+          "responses": {
+            "200": {
+              "description": "Success",
+              "schema": {
+                "$ref": "#/components/schemas/weather"
+              }
+            },
+            "403": {
+              "description": "Error in call"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "weather": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "uuid"
+            },
+            "city": {
+                "type": "string"
+            },
+            "main": {
+                "type":"string"
+            },
+            "description": {
+                "type": "string"
+            },
+            "icon": {
+                "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+    
