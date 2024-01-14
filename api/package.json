@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node server/server.ts",
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'test/**/*.ts'",
+    "tsc": "tsc",
+    "build": "tsc -p .",
+    "dev": "nodemon -L --exec ts-node server/server.ts",
+    "lint": "eslint \"./**/*.js\" --quiet"
   },
   "keywords": [],
   "author": "",

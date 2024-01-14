@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Background
 On_Red='\033[41m'         # Red

@@ -1,8 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
 . ./0_variables.sh
 
-HOME_PWD = $(pwd)
 echo -e "$On_Red $(pwd) $NC"
 
 if [[ "$PWD" != *":$(pwd)/web:"* ]]; then
