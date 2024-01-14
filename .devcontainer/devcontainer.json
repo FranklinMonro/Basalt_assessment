@@ -20,7 +20,6 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "bash ./1_install.sh",
-	"postStartCommand": "bash ./2_run.sh",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
