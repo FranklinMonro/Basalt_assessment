@@ -1,0 +1,125 @@
+{
+    "tags": {
+      "name": "Cities",
+      "description": "Get all trails by city"
+    },
+    "paths": {
+      "/weatherbycity": {
+        "get": {
+          "tags": ["Weather by city"],
+          "summary": "Get the weather by city list",
+          "responses": {
+            "200": {
+              "description": "Success",
+              "schema": {
+                "$ref": "#/components/schemas/weather"
+              }
+            },
+            "403": {
+              "description": "Error in call"
+            }
+          }
+        },
+        "post": {
+            "tags": ["Weather by city"],
+            "summary": "Get the weather by city list",
+            "parameters": [
+                {
+                  "in": "body",
+                  "name": "body",
+                  "description": "Weather object for post",
+                  "required": false,
+                  "schema": {
+                    "$ref": "#/definitions/weather"
+                  }
+                }
+            ],
+            "responses": {
+              "201": {
+                "description": "Success"
+              },
+              "403": {
+                "description": "Error in call"
+              }
+            }
+        },
+        "put": {
+            "tags": ["Weather by city"],
+            "summary": "Get the weather by city list",
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of row to be updated",
+                    "type": "string"
+                },
+                {
+                    "name": "city",
+                    "in": "path",
+                    "required": true,
+                    "description": "City to be updated",
+                    "type": "string"
+                }
+            ],
+            "responses": {
+              "204": {
+                "description": "Success"
+              },
+              "403": {
+                "description": "Error in call"
+              }
+            }
+        },
+        "delete": {
+            "tags": ["Weather by city"],
+            "summary": "Get the weather by city list",
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of row to be updated",
+                    "type": "string"
+                }
+            ],
+            "responses": {
+              "204": {
+                "description": "Success"
+              },
+              "403": {
+                "description": "Error in call"
+              }
+            }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "weather": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "uuid"
+            },
+            "city": {
+                "type": "string"
+            },
+            "main": {
+                "type":"string"
+            },
+            "description": {
+                "type": "string"
+            },
+            "date": {
+                "type": "string"
+            },
+            "active": {
+                "type": "boolean"
+            }
+          }
+        }
+      }
+    }
+  }
+    
