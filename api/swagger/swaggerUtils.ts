@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import fs from 'fs';
 import path from 'path';
 
@@ -17,7 +18,7 @@ const createSwaggerImport = () => {
 
 const addToSwaggerConfig = (config: any): any => {
   const swaggerJson = createSwaggerImport();
-  swaggerJson.forEach((eleIn: any) => {
+  swaggerJson.forEach((eleIn: object) => {
     Object.entries(eleIn).forEach((inEntries) => {
       const entrykey1 = inEntries[0] !== null || inEntries[0] !== undefined ? inEntries[0] : '';
       if (entrykey1 === 'paths') {
