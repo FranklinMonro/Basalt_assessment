@@ -10,6 +10,6 @@ if [[ "$PWD" != *":$(pwd)/api:"* ]]; then
 fi
 
 echo -e "$On_Red $(pwd) $NC"
-echo -e "$On_Yellow RUN API $(pwd)/web $NC"
+echo -e "$On_Blue RUN API $NC"
 
 npm run dev

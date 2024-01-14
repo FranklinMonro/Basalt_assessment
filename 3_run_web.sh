@@ -10,6 +10,6 @@ if [[ "$PWD" != *":$(pwd)/web:"* ]]; then
 fi
 
 echo -e "$On_Red $(pwd) $NC"
-echo -e "$On_Blue RUN WEB $(pwd)/web $NC"
+echo -e "$On_Blue RUN WEB $NC"
 
 ng s

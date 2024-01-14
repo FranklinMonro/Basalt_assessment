@@ -10,7 +10,7 @@ if [[ "$PWD" != *":$(pwd)/web:"* ]]; then
 fi
 
 echo -e "$On_Red $(pwd) $NC"
-echo -e "$On_Yellow INSTALL WEB $(pwd)/web $NC"
+echo -e "$On_Yellow INSTALL WEB $NC"
 
 npm install
 
@@ -24,7 +24,7 @@ if [[ "$PWD" != *":$(pwd)/api:"* ]]; then
 fi
 
 echo -e "$On_Red $(pwd) $NC"
-echo -e "$On_Yellow INSTALL API $(pwd)/web $NC"
+echo -e "$On_Yellow INSTALL API $NC"
 
 npm install
 
