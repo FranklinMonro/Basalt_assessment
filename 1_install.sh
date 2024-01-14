@@ -32,6 +32,6 @@ cd ..
 
 echo -e "$On_Red $(pwd) $NC"
 
-
+exit
 
 

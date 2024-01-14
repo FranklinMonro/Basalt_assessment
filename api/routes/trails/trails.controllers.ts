@@ -6,7 +6,7 @@ import axios from 'axios';
 const getCities = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
 
-    const { latitude, longitude } = req.body;
+    const { latitude, longitude } = req.params;
     const options = {
         method: 'GET',
         url: 'https://trailapi-trailapi.p.rapidapi.com/trails/explore/',

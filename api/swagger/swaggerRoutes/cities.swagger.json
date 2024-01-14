@@ -1,0 +1,64 @@
+{
+  "tags": {
+    "name": "Cities",
+    "description": "Get all cities in the world"
+  },
+  "paths": {
+    "/cities": {
+      "get": {
+        "tags": ["Cities"],
+        "summary": "Get all cities in the world",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/components/schemas/cities"
+            }
+          },
+          "403": {
+            "description": "Error in call"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "cities": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "wikiDataId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "countryCode": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "regionCode": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "float"
+          },
+          "longitude": {
+            "type": "float"
+          },
+          "population": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

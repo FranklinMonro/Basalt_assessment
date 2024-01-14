@@ -4,7 +4,7 @@ const config = {
   openapi: '3.0.3',
   info: {
     version: '1.0.0',
-    title: 'Runninghill API',
+    title: 'Basalt API',
     description: 'Endpoints for Runninghill API',
     license: {
       name: 'MIT',
@@ -13,14 +13,14 @@ const config = {
   },
   servers: [
     {
-      url: '/runninghillapi/',
+      url: '/basaltapi/',
       description: 'Local Dev',
     },
   ],
   tags: [
     {
-      name: 'Create sentences as per word type',
-      description: 'API for creating sentences',
+      name: 'Get trails by city to create a database of trails to do',
+      description: 'API for creating to do trails',
     },
   ],
   consumes: [

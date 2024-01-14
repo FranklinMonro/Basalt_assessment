@@ -5,7 +5,7 @@ class TrailsRouter {
   public router = express.Router();
 
   constructor() {
-    this.router.get('', getTrails);
+    this.router.get('/:latitude/:longitude', getTrails);
   }
 }
 

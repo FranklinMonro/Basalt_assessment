@@ -6,6 +6,8 @@ import { appLogger as log, errorHandlerLogger as errorLog } from './winstonLog';
 import swaggerConfig from '../swagger/swaggerConfig';
 
 import CitiesRouter from '../routes/cities/cities.routes';
+import TrailsRouter from '../routes/trails/trails.routes';
+import TrailByCityRouter  from '../routes/trailByCity/trailByCity.routes';
 
 class App {
   public httpServer = express();
@@ -37,6 +39,10 @@ class App {
     this.httpServer.use('/basaltapi-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 
     this.httpServer.use('/basaltapi/cities', CitiesRouter);
+
+    this.httpServer.use('/basaltapi/trails', TrailsRouter);
+
+    this.httpServer.use('/basaltapi/trailsbycity', TrailByCityRouter);
 
     this.httpServer.use((err: Error, req: Request, res: Response, next: NextFunction) => {
       console.log(`error in url ${req.originalUrl} - error: ${err}`);
