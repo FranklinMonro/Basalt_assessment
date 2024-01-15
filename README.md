@@ -2,6 +2,7 @@
 
 ## INSTALL DEV CONTAINER EXTENSION
 ![image](https://github.com/FranklinMonro/Basalt_assessment/assets/34055502/71066790-0398-4018-ba64-3965d9a2de23)
+![image](https://github.com/FranklinMonro/runninghill_back_end/assets/34055502/3a95dcd8-367a-45aa-ad63-34d53c173191)
 
 ### RUN WEB
 ![image](https://github.com/FranklinMonro/Basalt_assessment/assets/34055502/2304bde4-27b2-4b87-ba75-3e82d96bec3e)
