@@ -44,6 +44,7 @@ export class WeatherListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getWeatherByCityList = (): void => {
+    console.log('getWeatherByCityList')
     this.loader = true;
     this.subcription = this.appService.getWeatherByCity().subscribe({
       next: (res) => {
