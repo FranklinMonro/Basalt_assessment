@@ -1,12 +1,14 @@
 <mat-spinner class="spinner" *ngIf="loader"></mat-spinner>
-<div *ngIf="!loader && dataSource">
+<div *ngIf="!loader">
   <mat-form-field>
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
   </mat-form-field>
-
+  &nbsp; 
+  &nbsp;   
+  <button mat-raised-button color="accent" (click)="getWeatherByCityList()">Update Table</button>
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table *ngIf="dataSource" mat-table [dataSource]="dataSource" matSort>
   
       <!-- ID Column -->
       <ng-container matColumnDef="id">

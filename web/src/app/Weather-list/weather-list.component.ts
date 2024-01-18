@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppService } from '../app.service';
 import { Subscription } from 'rxjs';
@@ -28,9 +28,8 @@ export class WeatherListComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private appService: AppService,
     private toastr: ToastrService,
-  ) {
-    this.getWeatherByCityList();
-  }
+    private changeDetectorRefs: ChangeDetectorRef,
+  ) {  }
 
   ngOnInit(): void {
     this.getWeatherByCityList();
@@ -44,11 +43,11 @@ export class WeatherListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getWeatherByCityList = (): void => {
-    console.log('getWeatherByCityList')
     this.loader = true;
     this.subcription = this.appService.getWeatherByCity().subscribe({
       next: (res) => {
         this.dataSource = new MatTableDataSource(res);
+        this.changeDetectorRefs.detectChanges();
       },
       error: (err: ErrorEvent) => {
         this.toastr.error(err.message, 'ERROR', {
@@ -75,7 +74,6 @@ export class WeatherListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.loader = true;
     this.subcription = this.appService.updateWeatherByCity(id!, city!).subscribe({
       next: (res) => {
-        console.log(res);
         if (res) {
           this.getWeatherByCityList();
           this.toastr.success('Updated Weather', 'SUCCESS');
