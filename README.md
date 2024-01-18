@@ -15,3 +15,7 @@ PGADMIN_DEFAULT_EMAIL: pgadmin@basalt.com\
 PGADMIN_DEFAULT_PASSWORD: admin
 ![image](https://github.com/FranklinMonro/Basalt_assessment/assets/34055502/f2818e32-5be1-462c-bb57-5e42aa91d19f)
 
+### If docker compose don't install DB, install manually
+![image](https://github.com/FranklinMonro/Basalt_assessment/assets/34055502/84ecb49b-61fd-4ac4-8c4c-b5a7f1234f2d)
+
+
