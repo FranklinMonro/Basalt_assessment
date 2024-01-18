@@ -1,5 +1,3 @@
-CREATE DATABASE basalt;
-GRANT ALL PRIVILEGES ON DATABASE basalt TO postgres;
 --
 -- PostgreSQL database dump
 --
