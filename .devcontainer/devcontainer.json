@@ -19,7 +19,7 @@
 	"forwardPorts": [4200, 3000, 5432],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "bash ./1_install.sh",
+	"postCreateCommand": "sh ./1_install.sh",
 
 	// Configure tool-specific properties.
 	// "customizations": {},

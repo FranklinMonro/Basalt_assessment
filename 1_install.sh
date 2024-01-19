@@ -5,8 +5,8 @@
 echo -e "$On_Red $(pwd) $NC"
 
 if [[ "$PWD" != *":$(pwd)/web:"* ]]; then
-  echo -e "$On_Green GO TO DIRECTORY $(pwd)/web $NC"
-  cd web
+    echo -e "$On_Green GO TO DIRECTORY $(pwd)/web $NC"
+    cd web
 fi
 
 echo -e "$On_Red $(pwd) $NC"
@@ -19,8 +19,8 @@ cd ..
 echo -e "$On_Red $(pwd) $NC"
 
 if [[ "$PWD" != *":$(pwd)/api:"* ]]; then
-  echo -e "$On_Green GO TO DIRECTORY $(pwd)/api $NC"
-  cd api
+    echo -e "$On_Green GO TO DIRECTORY $(pwd)/api $NC"
+    cd api
 fi
 
 echo -e "$On_Red $(pwd) $NC"
