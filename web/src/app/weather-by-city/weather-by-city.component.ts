@@ -43,7 +43,7 @@ export class WeatherByCityComponent implements OnInit, OnDestroy {
         this.citiesList = res;
         if (this.citiesList.length > 0) {
           this.weatherData = true;
-        }
+        } 
       },
       error: (err: ErrorEvent) => {
         this.toastr.error(err.message, 'ERROR', {
@@ -62,6 +62,10 @@ export class WeatherByCityComponent implements OnInit, OnDestroy {
     this.loader = true;
     this.subcription = this.appService.getWeather(city!).subscribe({
       next: (res) => {
+        if (!res) {
+          this.toastr.warning('No weather for this city', 'WARNING', { timeOut: 3000});
+          return;
+        }
         this.createWeatherForm(city!, res[0]);
       },
       error: (err: ErrorEvent) => {
